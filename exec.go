@@ -14,6 +14,8 @@ func execInput(input string) error {
 
 	// Check for builtins
 	switch args[0] {
+		case "exit":
+			os.Exit(0)
 		case "cd":
 			var dir string
 			if len(args) < 2 {
