@@ -1,2 +1,2 @@
 # gshell
-yep, another one for learning
+Writing my own shell. Just fer fun and learning. Don't use it at home.
