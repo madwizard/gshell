@@ -17,6 +17,12 @@ func main(){
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 	}
+	history, err := os.Create("/tmp/dat2")
+	if err != nil {
+		fmt.Fprintln((os.Stderr, err))
+	}
+	defer history.Close()
+
 	reader := bufio.NewReader(os.Stdin)
 	for {
 		fmt.Print(home + "$ ")
@@ -25,7 +31,7 @@ func main(){
 			fmt.Fprintln(os.Stderr, err)
 		}
 
-		if err = execInput(input); err != nil {
+		if err = execInput(input, history); err != nil {
 			fmt.Fprintln(os.Stderr, err)
 		}
 	}

@@ -7,15 +7,26 @@ import (
 	"strings"
 )
 
-func execInput(input string) error {
+// Before executing input, need to parse input for quotes, etc.
+// Parse rules regarding special characters are copied from
+// bash.
+
+
+
+// execInput executes command, return eventual error
+// Checks for builtins
+func execInput(input string, history *os.File) error {
+	history.WriteString(input)
 	input = strings.TrimSuffix(input, "\n")
 
 	args := strings.Split(input, " ")
 
 	// Check for builtins
 	switch args[0] {
+		// Shall we exit?
 		case "exit":
 			os.Exit(0)
+		// Change working directory
 		case "cd":
 			var dir string
 			if len(args) < 2 {
